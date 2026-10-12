@@ -33,19 +33,19 @@ let passedStudentsMarks = getPassingStudentsMarks(passedStudents);
 console.log(passedStudentsMarks)
 
 
-// get passed students names 
-const getPassStudentNames = (passedStudents) => {
+// GET ALL STUDENT NAMES BY MAP
+const getAllStudentNames = (students) => {
 
-    let studentNames = passedStudents.map(function(student){
+    let studentNames = students.map(function(student){
         return student.name;
     })
 
     return studentNames;
 }
-console.log(getPassStudentNames(passedStudents));
+console.log(getAllStudentNames(students));
 
 
-// passing students name
+// PASS STUDENT NAMES USING FILTER OR MAP
 const getPassingStudentsNames = (students) => {
 
     let passStudents = students.filter(function(student){
@@ -100,8 +100,52 @@ const totalAmout = getCartTotal(cart);
 console.log(totalAmout);
 
 
+// STUDENTS TOTAL MARKS USING REDCUE
+const getTotalMarks = (students) => {
+
+    let totalMarks = students.reduce(function(totalMarksSum, student){
+        return totalMarksSum + student.marks;
+    }, 0)
+
+    return totalMarks;
+}
+
+console.log(getTotalMarks(students));
 
 
 
+// GET PASSING STUDENTS TOTAL MARKS USING FILTER AND REDUCE
+const getPassingStudentsTotalMarks = (students) => {
+
+    // Pass Students array 
+    const passStudents = getPassingStudents(students)
+    
+    let studentMarks = getTotalMarks(passStudents);
+
+    return studentMarks;
+}
+
+const passingStudentsTotal = getPassingStudentsTotalMarks(students)
+console.log(passingStudentsTotal);
 
 
+
+// COMBINE PRACTICE OF REDUCE, FILTER OR MAP
+const passingStudentsMaks = (students) => {
+
+    let  passStd = students.filter(function(student){
+        return student.marks >= 50;
+    })
+
+    let passStdMarks = passStd.map(function(student){
+        return student.marks;
+    })
+
+    let sumOfMarks = passStdMarks.reduce(function(totalofMarks, marks){
+        return totalofMarks + marks;
+    }, 0)
+
+    return sumOfMarks;
+}
+
+console.log(passingStudentsMaks(students));
